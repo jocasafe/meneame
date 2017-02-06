@@ -10,6 +10,10 @@ drop table if exists historias cascade;
 
 create table historias(
 	id 		  bigserial constraint pk_historias primary key,
+	usuarios_id	  bigint constraint fk_usuarios_id
+		                 references usuarios(id)
+			         on delete no action
+				 on update cascade,			 	
 	titulo  	  varchar(100)  not null,
 	texto_historia    text          not null,
 	fecha_publicacion timestamptz   not null default current_timestamp,
